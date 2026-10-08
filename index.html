@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бяцхан үрийн баярын урилга</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="fx" aria-hidden="true"></div>
+<button id="mus" type="button" aria-pressed="false">🎵 Хөгжим асаах</button>
+
+<header class="hero" aria-label="Угтах дэлгэц">
+  <div class="sun"></div>
+  <div class="cloud" style="top:12%;width:120px;height:30px;animation-duration:90s;animation-delay:-20s"></div>
+  <div class="cloud" style="top:24%;width:170px;height:38px;animation-duration:130s;animation-delay:-70s;opacity:.75"></div>
+  <div class="cloud" style="top:6%;width:90px;height:24px;animation-duration:110s;animation-delay:-50s;opacity:.7"></div>
+  <svg class="land" viewBox="0 0 400 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 110 L50 62 L85 92 L140 40 L200 100 L255 58 L310 96 L360 66 L400 96 V220H0Z" fill="#8aa3c4" opacity=".75"/>
+    <path d="M140 40 l14 14 -10 4 -8 -6 -9 8z M255 58 l11 11 -8 3 -7 -5z" fill="#fff" opacity=".8"/>
+    <path d="M0 135 Q90 105 200 130 T400 120 V220H0Z" fill="#7fb36a"/>
+    <path d="M0 165 Q120 135 230 160 T400 150 V220H0Z" fill="#5f9b4f"/>
+    <path d="M0 195 Q150 170 400 190 V220H0Z" fill="#4a8640"/>
+    <g transform="translate(262 128)">
+      <path d="M-34 30 V8 Q-34 -12 0 -22 Q34 -12 34 8 V30Z" fill="#fbf3e2" stroke="#d9c9a3" stroke-width="1"/>
+      <path d="M-38 6 Q0 -34 38 6 Q0 -16 -38 6Z" fill="#9b1b2c"/>
+      <path d="M-34 6 H34" stroke="#b8892f" stroke-width="2.5"/>
+      <path d="M-34 14 H34" stroke="#9b1b2c" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <rect x="-7" y="10" width="14" height="20" rx="7" fill="#5e1424"/>
+      <circle cx="0" cy="-23" r="2.5" fill="#b8892f"/>
+    </g>
+    <g fill="#fff" opacity=".9"><circle cx="40" cy="190" r="2"/><circle cx="90" cy="200" r="2"/><circle cx="330" cy="196" r="2"/></g>
+    <g fill="#e9c24a"><circle cx="60" cy="182" r="2"/><circle cx="150" cy="196" r="2"/><circle cx="360" cy="180" r="2"/></g>
+  </svg>
+  <div class="ornSide l" aria-hidden="true"></div><div class="ornSide r" aria-hidden="true"></div>
+  <div class="greet">
+    <h1>Сайн байна уу?</h1>
+    <p id="welcome" aria-label="Та бүхнийг манай бяцхан үрийн баярт урьж байна"></p>
+  </div>
+  <div class="hint"><i>⌄</i></div>
+</header>
+
+<main>
+  <div class="bg-pat" aria-hidden="true"></div>
+
+  <section class="sec" aria-labelledby="cname">
+    <article class="card rv">
+      <p class="kicker rv" style="--d:.3s">Урилга</p>
+      <h2 class="name rv" id="cname" style="--d:.6s"></h2>
+      <p class="age rv" id="cage" style="--d:1s"></p>
+      <div class="rule rv" style="--d:1.3s"></div>
+      <ul class="det">
+        <li class="rv from-l" style="--d:1.5s"><b>📅</b><span id="cdate"></span></li>
+        <li class="rv from-r" style="--d:2s"><b>🕐</b><span id="ctime"></span></li>
+        <li class="rv from-l" style="--d:2.5s"><b>📍</b><span id="cloc"></span></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="sec" aria-label="Хүүхдийн зураг">
+    <figure class="photo rv" id="photo"><div id="photoIn">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#6b4528" stroke-width="2.5" stroke-linecap="round"><circle cx="32" cy="24" r="10"/><path d="M12 56c2-14 38-14 40 0"/></svg>
+    </div></figure>
+  </section>
+
+  <section class="sec" aria-label="Урилгын үг">
+    <p class="msg" id="msg"></p>
+  </section>
+
+  <section class="sec" aria-labelledby="rsvpT" style="text-align:center;flex-direction:column;align-items:center">
+    <h2 id="rsvpT" class="rv" style="font-size:1.1rem;color:var(--red);letter-spacing:.2em;margin-bottom:1.2rem"></h2>
+    <button class="btn rv" id="rsvpBtn" type="button" aria-expanded="false" aria-controls="form">Хүрэлцэн ирэхээ мэдэгдэх</button>
+    <div id="form" style="width:min(100%,460px)">
+      <form id="rsvp">
+        <label>Нэр<input name="n" required autocomplete="name"></label>
+        <label>Хэдэн хүн ирэх вэ?<input name="c" type="number" min="1" max="20" value="1" inputmode="numeric"></label>
+        <p style="font-size:.95rem;color:var(--brown)">Хүрэлцэн ирэх эсэх</p>
+        <div class="row">
+          <button class="btn" type="submit" data-v="yes">Ирнэ</button>
+          <button class="btn alt" type="submit" data-v="no">Харамсалтай нь ирж чадахгүй</button>
+        </div>
+      </form>
+    </div>
+    <p class="thanks" id="thanks" hidden></p>
+  </section>
+</main>
+
+<footer class="final">
+  <h2 class="rv">Бидний баярт өдөр уулзацгаая</h2>
+  <svg class="land" viewBox="0 0 400 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 Q100 15 220 38 T400 28 V100H0Z" fill="#7fb36a"/><path d="M0 70 Q150 45 400 66 V100H0Z" fill="#5f9b4f"/>
+  
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
