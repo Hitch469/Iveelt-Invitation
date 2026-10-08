@@ -29,10 +29,14 @@
 
   /* RSVP */
   const form=$("form"),btn=$("rsvpBtn");
+  let rsvpChoice="yes";
   btn.onclick=()=>{const o=form.classList.toggle("open");btn.setAttribute("aria-expanded",o);
     if(o)setTimeout(()=>form.scrollIntoView({behavior:"smooth",block:"center"}),400)};
-  $("rsvp").addEventListener("submit",e=>{e.preventDefault();
-    const v=e.submitter&&e.submitter.dataset.v,f=e.target,n=f.n.value.trim();
+  const rsvp=$("rsvp");
+  rsvp.addEventListener("click",e=>{const submit=e.target.closest("button[data-v]");
+    if(submit)rsvpChoice=submit.dataset.v});
+  rsvp.addEventListener("submit",e=>{e.preventDefault();
+    const v=e.submitter&&e.submitter.dataset.v||rsvpChoice,f=e.target,n=f.elements.namedItem("n").value.trim();
     const yes=v==="yes";
     try{localStorage.setItem("rsvp",JSON.stringify({n,yes}))}catch(_){}
     form.classList.remove("open");btn.hidden=true;
@@ -40,6 +44,7 @@
     t.textContent=yes?"Баярлалаа, "+n+"! Манай гэр бүл хүлээж байя ":"Ойлголоо, "+n+". Хариу өгсөнд баярлалаа ";
     if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n);
       t.insertAdjacentHTML("beforeend",'<br><a style="font-size:1rem;color:var(--red)" href="sms:'+INVITE.rsvpPhone+'?&body='+body+'">Мессэж илгээх</a>');}
+    rsvpChoice="yes";
   });
 
   /* music */
