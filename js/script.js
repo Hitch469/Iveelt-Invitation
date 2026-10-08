@@ -11,7 +11,7 @@
 
   /* line / word builders */
   function words(el,text,start,gap){el.innerHTML=text.split(" ").map((w,i)=>'<span style="animation-delay:'+(start+i*gap).toFixed(2)+'s">'+w+'&nbsp;</span>').join("");}
-  words($("welcome"),"Та бүхнийг манай бяцхан үрийн баярт урьж байна",3.9,.45);
+  words($("welcome"),"Эрхэм хүндэт таныг бидний хүү Ивээлтийн сэвлэг үргээх ёслолд хүрэлцэн ирэхийг хүндэтгэн урьж байна.",3.9,.45);
   const lines=["Бидний бяцхан үрийн Сэвлэг үргээх ёслолд хүрэлцэн ирж, бидний баярт өдрийг хамтдаа хуваалцахыг урьж байна."];
   $("msg").innerHTML=lines.map((l,i)=>'<span class="rv" style="--d:'+(i*.9)+'s">'+l+'</span>').join("");
   $("msg").setAttribute("aria-label","Таныг хүрэлцэн ирж, бидний баярт өдрийг хамтдаа хуваалцахыг урьж байна.");
