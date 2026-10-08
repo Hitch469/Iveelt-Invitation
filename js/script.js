@@ -38,7 +38,7 @@
     form.classList.remove("open");btn.hidden=true;
     const t=$("thanks");t.hidden=false;
     t.textContent=yes?"Баярлалаа, "+n+"! Манай гэр бүл хүлээж байя ":"Ойлголоо, "+n+". Хариу өгсөнд баярлалаа ";
-    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n+" ("+c+" хүн)");
+    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n+" ("+c+" hun)");
       t.insertAdjacentHTML("beforeend",'<br><a style="font-size:1rem;color:var(--red)" href="sms:'+INVITE.rsvpPhone+'?&body='+body+'">Мессэж илгээх</a>');}
   });
 
