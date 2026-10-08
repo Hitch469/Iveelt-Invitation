@@ -32,13 +32,13 @@
   btn.onclick=()=>{const o=form.classList.toggle("open");btn.setAttribute("aria-expanded",o);
     if(o)setTimeout(()=>form.scrollIntoView({behavior:"smooth",block:"center"}),400)};
   $("rsvp").addEventListener("submit",e=>{e.preventDefault();
-    const v=e.submitter&&e.submitter.dataset.v,f=e.target,n=f.n.value.trim(),c=f.c.value;
+    const v=e.submitter&&e.submitter.dataset.v,f=e.target,n=f.n.value.trim();
     const yes=v==="yes";
-    try{localStorage.setItem("rsvp",JSON.stringify({n,c,yes}))}catch(_){}
+    try{localStorage.setItem("rsvp",JSON.stringify({n,yes}))}catch(_){}
     form.classList.remove("open");btn.hidden=true;
     const t=$("thanks");t.hidden=false;
     t.textContent=yes?"Баярлалаа, "+n+"! Манай гэр бүл хүлээж байя ":"Ойлголоо, "+n+". Хариу өгсөнд баярлалаа ";
-    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n+" ("+c+" hun)");
+    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n);
       t.insertAdjacentHTML("beforeend",'<br><a style="font-size:1rem;color:var(--red)" href="sms:'+INVITE.rsvpPhone+'?&body='+body+'">Мессэж илгээх</a>');}
   });
 
