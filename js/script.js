@@ -37,9 +37,9 @@
     try{localStorage.setItem("rsvp",JSON.stringify({n,c,yes}))}catch(_){}
     form.classList.remove("open");btn.hidden=true;
     const t=$("thanks");t.hidden=false;
-    t.textContent=yes?"Баярлалаа, "+n+"! Таныг угтахад бэлэн байна ❤️":"Ойлголоо, "+n+". Хариу өгсөнд баярлалаа 🌸";
-    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ирнэ ❤️ ":"Ирж чадахгүй ")+n+" ("+c+" хүн)");
-      t.insertAdjacentHTML("beforeend",'<br><a style="font-size:1rem;color:var(--red)" href="sms:'+INVITE.rsvpPhone+'?&body='+body+'">SMS-ээр илгээх</a>');}
+    t.textContent=yes?"Баярлалаа, "+n+"! Манай гэр бүл хүлээж байя ":"Ойлголоо, "+n+". Хариу өгсөнд баярлалаа ";
+    if(INVITE.rsvpPhone){const body=encodeURIComponent((yes?"Ochino  ":"Ochij chadahguine ")+n+" ("+c+" хүн)");
+      t.insertAdjacentHTML("beforeend",'<br><a style="font-size:1rem;color:var(--red)" href="sms:'+INVITE.rsvpPhone+'?&body='+body+'">Мессэж илгээх</a>');}
   });
 
   /* music */
