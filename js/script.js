@@ -61,19 +61,24 @@
       if(INVITE.music){audio=audio||Object.assign(new Audio(INVITE.music),{loop:true,volume:.5});want?await audio.play():audio.pause();}
       else{
         if(!master)synth();
-        if(want){ctx.resume();await new Promise(r=>setTimeout(r,250));if(ctx.state!=="running")throw 0;}
+        if(want){await ctx.resume();await new Promise(r=>setTimeout(r,250));if(ctx.state!=="running")throw new Error("AudioContext did not start");}
         master.gain.setTargetAtTime(want?.8:0,ctx.currentTime,.4);
       }
       on=want;
-    }catch(_){on=false}
+      mb.title="";
+    }catch(error){
+      on=false;
+      if(error&&error.name==="NotAllowedError")mb.title="Хөгжим эхлүүлэхийн тулд дэлгэцэд хүрнэ үү.";
+      else{mb.title="Хөгжим ачаалж чадсангүй.";console.error("Unable to play invitation music:",error)}
+    }
     mb.classList.toggle("on",on);mb.setAttribute("aria-pressed",on);
     mb.textContent=on?"🔇 Хөгжим унтраах":"🎵 Хөгжим асаах";
   }
   /* Автоматаар эхлүүлэх: хөтөч зөвшөөрвөл шууд, үгүй бол эхний хүрэлт/дарлт дээр */
   const gestures=["pointerdown","touchend","keydown","click"];
-  function stopWaiting(){gestures.forEach(t=>removeEventListener(t,firstGesture))}
+  function stopWaiting(){gestures.forEach(t=>removeEventListener(t,firstGesture,true))}
   function firstGesture(e){if(e.target.closest&&e.target.closest("#mus"))return;stopWaiting();setMusic(true)}
-  gestures.forEach(t=>addEventListener(t,firstGesture,{passive:true}));
+  gestures.forEach(t=>addEventListener(t,firstGesture,{capture:true,passive:true}));
   setMusic(true).then(()=>{if(on)stopWaiting()});
   mb.onclick=e=>{e.stopPropagation();stopWaiting();setMusic(!on)};
 })();
